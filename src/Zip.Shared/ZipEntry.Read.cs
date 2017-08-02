@@ -695,6 +695,8 @@ namespace Ionic.Zip
             // The Unix filetimes are 32-bit unsigned integers,
             // storing seconds since Unix epoch.
 
+            if (dataSize == 1) return j;    // Case where this field contains only the flag without any actual time data
+
             if (dataSize != 13 && dataSize != 9 && dataSize != 5)
                 throw new BadReadException(String.Format("  Unexpected size (0x{0:X4}) for Extended Timestamp extra field at position 0x{1:X16}", dataSize, posn));
 
